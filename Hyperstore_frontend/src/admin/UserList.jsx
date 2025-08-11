@@ -64,8 +64,8 @@ const UserList = () => {
   }
 
   return (
-    <div>
-      <h2>User List</h2>
+   
+      <div className="admin-table-container">
       <table>
         <thead>
           <tr>
@@ -90,8 +90,8 @@ const UserList = () => {
             ))
           )}
         </tbody>
-      </table>
-    </div>
+      </table></div>
+   
   );
 };
 

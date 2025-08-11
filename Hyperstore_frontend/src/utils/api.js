@@ -1,15 +1,15 @@
-// const API_BASE_URL ="http://localhost:5000/api"
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL ;
-console.log("API Base URL:", API_BASE_URL);
+
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL ;// backend base url
+
 if (!API_BASE_URL) {
   throw new Error("VITE_API_BASE_URL is not defined in the environment variables.");
 }
-console.log("API Base URL:", API_BASE_URL);
 
-let token = localStorage.getItem("token");
 
-export const setToken = (newToken) => {
+let token = localStorage.getItem("token");   //check if token is present in local storage
+
+export const setToken = (newToken) => {  // function to set the token
   token = newToken;
   if (token) {
     localStorage.setItem("token", token);
@@ -18,7 +18,7 @@ export const setToken = (newToken) => {
   }
 };
 
-const getHeaders = () => {
+const getHeaders = () => {              // function to get headers for API requests
   const headers = {
     "Content-Type": "application/json",
   };
@@ -30,7 +30,7 @@ const getHeaders = () => {
   return headers;
 };
 
-const request = async (endpoint, options = {}) => {
+const request = async (endpoint, options = {}) => {  // function to make API requests, with endpoint and options
   const url = `${API_BASE_URL}${endpoint}`;
   const config = {
     headers: getHeaders(),
@@ -52,80 +52,85 @@ const request = async (endpoint, options = {}) => {
   }
 };
 
+
+
+
+
 // Auth methods
-export const register = (userData) => {
+export const register = (userData) => {                    // function to register a new user
   return request("/auth/register", {
     method: "POST",
     body: JSON.stringify(userData),
   });
 };
 
-export const login = (credentials) => {
+export const login = (credentials) => {          // function to login a user, credentials are email and password
   return request("/auth/login", {
     method: "POST",
     body: JSON.stringify(credentials),
   });
 };
 
-export const getCurrentUser = () => {
+export const getCurrentUser = () => {           // function to get the current logged-in user
   return request("/auth/me");
 };
 
-export const logout = () => {
+export const logout = () => {                     // function to logout the user
   return request("/auth/logout", { method: "POST" });
 };
 
+
+
+
+
+
 // Product methods
-export const getProducts = (params = {}) => {
+export const getProducts = (params = {}) => {                           // function to get products, with optional query parameters
   const queryString = new URLSearchParams(params).toString();
   return request(`/products?${queryString}`);
 };
 
-export const getProduct = (id) => {
+export const getProduct = (id) => {                               // function to get a single product by ID
   return request(`/products/${id}`);
 };
 
+
+
+
 // Order methods
-export const createOrder = (orderData) => {
+export const createOrder = (orderData) => {                    // function to create a new order,orderData contains order details
   return request("/orders", {
     method: "POST",
     body: JSON.stringify(orderData),
   });
 };
 
-export const getUserOrders = () => {
+export const getUserOrders = () => {                      // function to get orders of the current user
   return request("/orders/my-orders");
 };
 
-export const getOrder = (id) => {
+export const getOrder = (id) => {                        // function to get a single order by ID                   
   return request(`/orders/${id}`);
 };
 
+
+
+
+
 // User methods
 
-export const getUsers = () => {
+export const getUsers = () => {                   // function to get all users
   return request("/users");
 };
 
-export const createProduct = (productData) => {
+export const createProduct = (productData) => {        // function to create a new product, productData contains product details                         
   return request("/products", {
     method: "POST",
     body: JSON.stringify(productData),
   });
 };
 
-export const updateProduct = (id, productData) => {
-  return request(`/products/${id}`, {
-    method: "PUT",
-    body: JSON.stringify(productData),
-  });
-};
 
-export const deleteProduct = (id) => {
-  return request(`/products/${id}`, {
-    method: "DELETE",
-  });
-};
 
 export const getAllOrders = () => {
   return request("/orders");
@@ -141,7 +146,7 @@ export const updateOrderStatus = (orderId, data) => {
   });
 };
 
-const apiService = {
+const apiService = {                     //this object contains all the methods for API requests
   setToken,
   register,
   login,
@@ -154,8 +159,6 @@ const apiService = {
   getOrder,
   getUsers,
   createProduct,
-  updateProduct,
-  deleteProduct,
   getAllOrders,
   getUserOrdersById,
   updateOrderStatus

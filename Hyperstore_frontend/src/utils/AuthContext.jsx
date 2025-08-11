@@ -2,7 +2,7 @@ import React from "react";
 import apiService from "./api";
 import toast from 'react-hot-toast';
 
-// Destructure the hooks from the main React object
+
 const { createContext, useState, useEffect } = React;
 
 export const AuthContext = createContext();
@@ -71,17 +71,7 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const updateProfile = async (profileData) => {
-    try {
-      const response = await apiService.updateProfile(profileData);
-      setUser(response.user);
-      toast.success("Profile updated successfully!");
-      return response;
-    } catch (error) {
-      toast.error("Failed to update profile.");
-      throw error;
-    }
-  };
+
 
   const value = {
     user,
@@ -90,7 +80,6 @@ export const AuthProvider = ({ children }) => {
     login,
     register,
     logout,
-    updateProfile,
     fetchCurrentUser,
   };
 

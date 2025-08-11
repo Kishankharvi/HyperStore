@@ -18,7 +18,7 @@ import AuthSuccess from "./pages/AuthSuccess"
 import LoadingSpinner from "./components/LoadingSpinner"
 import "./styles/App.css"
 import Header from "./components/Header"
-import { Toaster } from 'react-hot-toast'; // Import Toaster
+import { Toaster } from 'react-hot-toast'; 
 
 function AppContent() {
   const { user, loading } = useContext(AuthContext)

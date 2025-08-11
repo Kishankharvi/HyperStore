@@ -67,3 +67,4 @@ export const CartProvider = ({ children }) => {
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>
 }
+// Provide the context to children components, children can access cartItems, addToCart, updateQuantity, removeFromCart, clearCart, and getCartTotal

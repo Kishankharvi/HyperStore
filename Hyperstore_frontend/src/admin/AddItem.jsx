@@ -98,15 +98,16 @@ const AddItem = () => {
           placeholder="Image URL"
           required
         />
-        <label>
-          <input
-            type="checkbox"
-            name="inStock"
-            checked={productData.inStock}
-            onChange={handleChange}
-          />
-          In Stock
-        </label>
+       <label className="checkbox-label">
+      <input
+       type="checkbox"
+    name="inStock"
+    checked={productData.inStock}
+    onChange={handleChange}
+  />
+  In Stock
+</label>
+
         <button type="submit" className="admin-button add-new" disabled={loading}>
           {loading ? 'Adding...' : 'Add Product'}
         </button>

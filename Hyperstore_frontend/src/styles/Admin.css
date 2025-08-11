@@ -2,6 +2,8 @@
 .admin-dashboard {
   padding: 2rem;
   color: #fff;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .admin-title {
@@ -31,9 +33,10 @@
   gap: 10px;
   margin-bottom: 2rem;
   border-bottom: 1px solid var(--glass-border);
+  flex-wrap: wrap;
 }
 
-.admin-tab-btn ,.admin-toggle-btn{
+.admin-tab-btn, .admin-toggle-btn {
   background: transparent;
   border: none;
   color: var(--text-secondary);
@@ -43,6 +46,9 @@
   cursor: pointer;
   transition: var(--transition);
   border-bottom: 2px solid transparent;
+  flex: 1 1 auto;
+  text-align: center;
+  min-width: 120px;
 }
 
 .admin-tab-btn.active {
@@ -62,16 +68,18 @@
 table {
   width: 100%;
   border-collapse: collapse;
+  min-width: 700px;
 }
 
 table th, table td {
   padding: 12px 15px;
   text-align: left;
   border-bottom: 1px solid var(--glass-border);
+  vertical-align: middle;
 }
 
 table th {
-  background-color: rgba(0,0,0,0.2);
+  background-color: rgba(0, 0, 0, 0.2);
   font-weight: 600;
   color: var(--primary-color);
 }
@@ -91,14 +99,15 @@ table li {
 
 /* Button Styles */
 .admin-button {
-  padding: 6px 10px;
+  padding: 6px 12px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   font-weight: 500;
   transition: opacity 0.2s;
-  font-size: 12px;
+  font-size: 14px;
   margin-right: 5px;
+  white-space: nowrap;
 }
 
 .admin-button:hover {
@@ -123,9 +132,9 @@ table li {
 
 /* Form Styles */
 .product-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem 2rem;
 }
 
 .product-form input,
@@ -139,24 +148,42 @@ table li {
   color: white;
   font-family: inherit;
   font-size: 14px;
+  resize: vertical;
+}
+
+.product-form textarea {
+  grid-column: 1 / -1;
+  min-height: 80px;
 }
 
 .product-form label {
+  grid-column: 1 / -1;
   display: flex;
   align-items: center;
   gap: 10px;
   cursor: pointer;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.product-form button {
+  grid-column: 1 / -1;
+  justify-self: start;
+  padding: 10px 20px;
+  font-size: 16px;
 }
 
 /* Status Badge Styles */
 .status-badge {
   display: inline-block;
-  font-size: 0.7rem;
-  padding: 3px 8px;
+  font-size: 0.75rem;
+  padding: 4px 10px;
   border-radius: 20px;
   text-transform: capitalize;
-  font-weight: 500;
+  font-weight: 600;
   color: white;
+  min-width: 80px;
+  text-align: center;
 }
 
 .status-badge.pending { background-color: #f39c12; }
@@ -165,3 +192,69 @@ table li {
 .status-badge.shipped { background-color: #2ecc71; }
 .status-badge.delivered { background-color: #9b59b6; }
 .status-badge.cancelled { background-color: #e74c3c; }
+
+/* Responsive Styles */
+@media (max-width: 900px) {
+  .product-form {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-tab-btn {
+    flex: 1 1 100%;
+    min-width: auto;
+  }
+
+  table {
+    min-width: 600px;
+  }
+}
+
+@media (max-width: 600px) {
+  table {
+    font-size: 12px;
+    min-width: 100%;
+  }
+
+  table th, table td {
+    padding: 8px 10px;
+  }
+
+  .admin-button {
+    font-size: 12px;
+    padding: 5px 8px;
+  }
+
+  .status-badge {
+    min-width: 60px;
+    font-size: 0.65rem;
+    padding: 3px 8px;
+  }
+}
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.admin-table-container {
+  width: 100%;
+  overflow-x: auto;
+
+  padding-bottom: 0.5rem;
+}
+
+table {
+  width: 100%;
+  min-width: 700px; 
+  border-collapse: collapse;
+  table-layout: auto;
+}

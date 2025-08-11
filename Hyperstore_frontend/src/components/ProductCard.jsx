@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom"
 import "../styles/ProductCard.css"
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product }) => {   //props contain product details
   return (
     <div className="product-card">
       <Link to={`/product/${product.id}`} className="product-link">
         <div className="product-image-container">
           <img
-            src={product.image || "/placeholder.svg?height=300&width=300"}
+            src={product.image || "/images/elementor-placeholder-image.png"}
             alt={product.name}
             className="product-image"
           />

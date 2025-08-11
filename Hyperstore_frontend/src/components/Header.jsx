@@ -6,7 +6,7 @@ import "../styles/Header.css"
 
 const Header = () => {
   const { user } = useContext(AuthContext)
-  const location = useLocation()
+  const location = useLocation()       // Get the current location to conditionally render the admin link
 
   return (
     <header className="header">
@@ -20,7 +20,7 @@ const Header = () => {
         </Link>
         <div className="header-actions">
           {user && user.role === 'admin' && (
-            location.pathname.startsWith('/admin') ? (
+            location.pathname.startsWith('/admin') ? (                 // If the current path starts with /admin, show Home link
               <Link to="/" className="admin-toggle-btn">
                 Home
               </Link>

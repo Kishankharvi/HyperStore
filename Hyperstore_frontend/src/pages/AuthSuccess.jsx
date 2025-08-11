@@ -6,7 +6,7 @@ import { AuthContext } from "../utils/AuthContext"
 import apiService from "../utils/api"
 import LoadingSpinner from "../components/LoadingSpinner"
 
-const AuthSuccess = () => {
+const AuthSuccess = () => {         // This component handles the authentication success flow after Google login
   const [searchParams] = useSearchParams()
   const navigate = useNavigate()
   const { setUser } = useContext(AuthContext)
