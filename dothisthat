@@ -1,0 +1,29 @@
+auth.js
+router.post('/create-admin', async (req, res) => {
+  try {
+    const { name, email, password } = req.body;
+
+    const existingAdmin = await User.findOne({ role: 'admin' });
+    if (existingAdmin) {
+      return res.status(400).json({ message: 'An admin user already exists.' });
+    }
+
+  
+
+    const adminUser = new User({
+      name,
+      email,
+      password: hashedPassword,
+      role: 'admin',
+      isVerified: true,
+    });
+
+    await adminUser.save();
+    res.status(201).json({ message: 'Admin user created successfully', userId: adminUser._id });
+  } catch (error) {
+    console.error('Error creating admin user:', error);
+    res.status(500).json({ message: 'Failed to create admin user', error: error.message });
+  }
+});
+
+
