@@ -1,4 +1,4 @@
-"use client"
+
 
 import { useState, useEffect, useContext } from "react"
 import { AuthContext } from "../utils/AuthContext"
@@ -44,7 +44,7 @@ const Profile = () => {
   return (
     <div className="profile-page">
       <div className="profile-header">
-        <img src={user.avatar || "./vite.svg"} alt="User Avatar" className="profile-avatar" />
+        <img src={user.avatar || "/user.jpeg"} alt="User Avatar" className="profile-avatar" />
         <h1 className="profile-name">{user.name}</h1>
         <p className="profile-email">{user.email}</p>
       </div>

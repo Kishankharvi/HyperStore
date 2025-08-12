@@ -1,4 +1,3 @@
-"use client"
 
 import { useState, useContext } from "react"
 import { Link, useNavigate } from "react-router-dom"
@@ -29,7 +28,7 @@ const Login = () => {
     setLoading(true)
 
     try {
-      const data = await login(formData) // Call the login function from AuthContext
+      const data = await login(formData) 
       setUser(data.user); // Set the user in AuthContext
 
        if (navigator.serviceWorker.controller) {
@@ -37,11 +36,11 @@ const Login = () => {
       type: 'SHOW_NOTIFICATION',
       payload: {
         title: `Welcome back, ${data.user.name}!`,
-          body: 'Check out the latest futuristic products.'
+          body: 'Check out the latest funturistic products.'
       }
         });
      }  
-      // Check the user's role and redirect
+      
       if (data.user.role === 'admin') {
         navigate('/admin'); // Redirect to admin dashboard
       } else {

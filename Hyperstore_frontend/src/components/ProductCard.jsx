@@ -10,6 +10,7 @@ const ProductCard = ({ product }) => {   //props contain product details
             src={product.image || "/images/elementor-placeholder-image.png"}
             alt={product.name}
             className="product-image"
+            fetchpriority="high"
           />
           <div className="product-overlay">
             <span className="view-details">View Details</span>

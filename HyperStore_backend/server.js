@@ -2,15 +2,12 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
-import helmet from "helmet";
-import rateLimit from "express-rate-limit";
 import session from "express-session";
 import passport from "passport";
 import compression from "compression";
 import morgan from "morgan";
 
 
-// Import routes
 import authRoutes from "./routes/auth.js";
 import productRoutes from "./routes/products.js";
 import orderRoutes from "./routes/orders.js";
@@ -18,41 +15,26 @@ import userRoutes from "./routes/users.js";
 
 dotenv.config();
 
-// Import passport config after dotenv so environment variables are loaded
+
 import "./config/passport.js";
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Security middleware
-app.use(helmet());
 
-// Compression middleware
 app.use(compression());
 
-// Logging middleware
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
 
-// Rate limiting
-const limiter = rateLimit({
-  windowMs: process.env.RATE_LIMIT_WINDOW_MS || 15 * 60 * 1000,
-  max: process.env.RATE_LIMIT_MAX_REQUESTS || 100,
-  message: "Too many requests from this IP, please try again later.",
-  standardHeaders: true,
-  legacyHeaders: false,
-});
-app.use(limiter);
-
-// CORS configuration
 app.use(cors());
 
 // Body parsing middleware
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true }));
 
-// Session configuration
+
 app.use(
   session({
     secret: process.env.SESSION_SECRET || "your-secret-key",
@@ -65,11 +47,9 @@ app.use(
   })
 );
 
-// Passport middleware
+
 app.use(passport.initialize());
 app.use(passport.session());
-// Serve static files from the 'uploads' directory
-app.use('/uploads', express.static('uploads'));
 
 
 
@@ -79,10 +59,10 @@ const startServer = async () => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
-    console.log('✅ Connected to MongoDB');
+    console.log(' Connected to MongoDB');
 
     app.listen(PORT, () => {
-      console.log(`🚀 Server running on port ${PORT}`);
+      console.log(`Server running on port ${PORT}`);
     });
   } catch (error) {
     console.error('MongoDB connection error:', error);

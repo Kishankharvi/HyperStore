@@ -26,7 +26,7 @@ const ProductList = () => {
       setLoading(true);
       try {
         // Fetches all products without any search/sort parameters
-        const response = await apiService.getProducts(); 
+        const response = await apiService.getProducts();
         setAllProducts(response.products);
       } catch (error) {
         console.error("Error fetching products:", error);
@@ -38,8 +38,7 @@ const ProductList = () => {
     fetchAllProducts();
   }, []);
 
-  // useMemo performs client-side filtering and sorting.
-  // It recalculates the list only when the underlying data or filters change.
+
   const displayedProducts = useMemo(() => {
     let products = [...allProducts];
 
@@ -55,7 +54,6 @@ const ProductList = () => {
         products = products.filter(product => product.category === category);
     }
 
-    // 3. Apply sorting based on the local sortOption state
     switch (sortOption) {
       case "name":
         products.sort((a, b) => a.name.localeCompare(b.name));
@@ -68,7 +66,6 @@ const ProductList = () => {
         break;
       case "createdAt":
       default:
-        // The API already sorts by createdAt, but this ensures consistency
         products.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
         break;
     }
@@ -90,17 +87,17 @@ const ProductList = () => {
         </div>
         
         <div className="filters">
-          {/* The form element is removed for a more interactive feel */}
+     
           <div className="search-form">
             <input
               type="text"
               placeholder="Search by name..."
               value={searchTerm}
-              // Update state on every keystroke for real-time filtering
+     
               onChange={(e) => setSearchTerm(e.target.value)}
               className="search-input"
             />
-            {/* The search button is no longer needed for this approach */}
+     
           </div>
 
           <select className="sort-select" value={sortOption} onChange={(e) => setSortOption(e.target.value)}>

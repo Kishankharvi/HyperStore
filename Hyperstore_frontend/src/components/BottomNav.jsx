@@ -1,4 +1,3 @@
-import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Home, ShoppingBag, User, ShoppingCart } from 'lucide-react';
 import '../styles/BottomNav.css';

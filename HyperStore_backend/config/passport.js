@@ -6,12 +6,11 @@ import dotenv from "dotenv"
 
 dotenv.config()
 
-// Ensure environment variables are set
 if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
   throw new Error("Google OAuth credentials are not set in environment variables.")
 }
 
-// Google OAuth Strategy
+
 passport.use(
   new GoogleStrategy(
     {

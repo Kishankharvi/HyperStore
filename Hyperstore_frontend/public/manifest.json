@@ -1,6 +1,6 @@
 {
-  "name": "Nexus Store - Futuristic eCommerce",
-  "short_name": "Nexus Store",
+  "name": "Hyper Store - Futuristic eCommerce",
+  "short_name": "Hyper Store",
   "description": "A futuristic eCommerce platform for cutting-edge products.",
   "start_url": "/",
   "display": "standalone",
@@ -48,6 +48,13 @@
       "src": "/icons/icon-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
+    }
+  ], "screenshots": [
+    {
+      "src": "/images/image.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "label": "Homepage"
     }
   ]
 }
